@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    elementFormDefault="unqualified"
+    attributeFormDefault="unqualified"
+    blockDefault="substitution">
+
+<xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
+        schemaLocation="Signature.xsd"/>
+
+<xs:element name="deed" type="myType"/>
+
+<xs:complexType name="myType">
+  <xs:sequence>
+   	<xs:element ref="ds:Signature" minOccurs="0" maxOccurs="unbounded"/>
+	<xs:element name="operative-deed" type="orderType" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+ </xs:complexType>
+
+<xs:complexType name="orderType">
+      <xs:sequence>        
+        <xs:element ref="ds:Signature" minOccurs="0" maxOccurs="unbounded"/>
+	<xs:element name="op-deed" type="xs:string"/>
+      </xs:sequence>
+      <xs:attribute name="Id" type="xs:ID" use="required"/> 
+</xs:complexType>
+
+</xs:schema>
